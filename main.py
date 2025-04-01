@@ -3,7 +3,10 @@ from src.routes import feriado
 from src.config.database import engine, Base
 from dotenv import load_dotenv
 import os
-
+import src.routes.feriado as feriado
+import src.routes.desviacion_de_horario as desviacion_de_horario
+import src.routes.combinacion as combinacion
+import src.routes.reglas_de_combinacion as reglas_de_combinacion
 load_dotenv()
 
 app = FastAPI()
@@ -13,7 +16,9 @@ Base.metadata.create_all(bind=engine)
 
 # incluye todas las rutas de la API
 app.include_router(feriado.router)
-
+app.include_router(desviacion_de_horario.router)
+app.include_router(combinacion.router)
+app.include_router(reglas_de_combinacion.router)
 @app.get("/")
 def root():
     return {"message": "API de Feriados en FastAPI"}
