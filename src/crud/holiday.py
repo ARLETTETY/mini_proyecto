@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from src.models.feriado import Feriado
-from src.schemas.feriado import FeriadoCreate, FeriadoUpdate
+from src.models.holiday import Feriado
+from src.schemas.holiday import FeriadoCreate, FeriadoUpdate
 
 def get_feriados(db: Session, skip: int = 0, limit: int = 10):
     return db.query(Feriado).offset(skip).limit(limit).all()

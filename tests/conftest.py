@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from src.config.database import get_db
 from main import app
-from src.models.feriado import Base
+from src.models.holiday import Base
 
 # base de datos en memoria para pruebas
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
