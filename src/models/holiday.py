@@ -4,7 +4,7 @@ from datetime import datetime
 from src.config.database import Base
 from iso3166 import countries
 
-class Feriado(Base):
+class Holiday(Base):
     __tablename__ = "feriado"
     
     holiday_id: Mapped[int] = Column(Integer, primary_key=True, index=True)

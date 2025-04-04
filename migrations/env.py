@@ -6,7 +6,7 @@ from src.config.database import engine  # Asegúrate de que esta es la conexión
 
 # Aquí importas tus modelos para que Alembic los reconozca
 from src.models.combination_rule import CombinationRule
-from src.models.combination_rule_r_schedule_deviation_rule import ReglasDeCombinacion
+from src.models.combination_rule_r_schedule_deviation_rule import CombinationRuleRScheduleDeviationRule
 from src.models.schedule_deviation_rule import ScheduleDeviation
 
 # Esta línea es la que configura Alembic para detectar las tablas y columnas a partir de los modelos

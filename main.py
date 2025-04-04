@@ -14,12 +14,13 @@ app = FastAPI()
 
 app.include_router(router_holiday, prefix="/api")
 app.include_router(router_combination_rule, prefix="/api")
-app.include_router(router_combination_rule_r, prefix="/api")
 app.include_router(router_schedule_deviation, prefix="/api")
+app.include_router(router_combination_rule_r, prefix="/api")
+Base.metadata.create_all(bind=engine)
+
 
 @app.get("/")
 def root():
     return {"message": "API de Feriados en FastAPI"}
 
-# Crear las tablas en la base de datos
-Base.metadata.create_all(bind=engine)
+print(Base.metadata.tables.keys())

@@ -11,6 +11,7 @@ def test_create_regla_de_combinacion(client: TestClient):
         "schedule_deviation_id": 1
     }
     response = client.post("/api/combination_rules", json=data)
+    print(response.json())
     assert response.status_code == 200
     assert response.json()["combination_rule_id"] == 1
     assert response.json()["schedule_deviation_id"] == 1

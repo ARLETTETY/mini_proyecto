@@ -4,7 +4,7 @@ from typing import Optional
 from iso3166 import countries
 from pydantic import BaseModel, field_validator, ConfigDict
 
-class FeriadoBase(BaseModel):
+class HolidayBase(BaseModel):
     name: str
     public_name: str
     year: int
@@ -24,10 +24,10 @@ class FeriadoBase(BaseModel):
             raise ValueError("El país especificado no es válido")
         return v
 
-class FeriadoCreate(FeriadoBase):
+class HolidayCreate(HolidayBase):
     pass
 
-class FeriadoUpdate(BaseModel):
+class HolidayUpdate(BaseModel):
     name: Optional[str] = None
     public_name: Optional[str] = None
     year: Optional[int] = None
@@ -38,7 +38,7 @@ class FeriadoUpdate(BaseModel):
     end: Optional[datetime] = None
     enable: Optional[bool] = None
 
-class FeriadoResponse(FeriadoBase):
+class HolidayResponse(HolidayBase):
     holiday_id: int
 
     model_config = ConfigDict(from_attributes=True)

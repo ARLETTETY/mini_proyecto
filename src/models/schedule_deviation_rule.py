@@ -3,7 +3,7 @@ from sqlalchemy.orm import Mapped, relationship
 from src.config.database import Base
 
 class ScheduleDeviationRule(Base):
-    __tablename__ = "schedule_deviation_rule"  # Nombre corregido
+    __tablename__ = "schedule_deviation_rule"  
 
     schedule_deviation_id: Mapped[int] = Column(Integer, primary_key=True, index=True)
     name: Mapped[str] = Column(String, unique=True)
