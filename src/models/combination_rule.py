@@ -3,7 +3,7 @@ from sqlalchemy.orm import Mapped, relationship
 from src.config.database import Base
 
 class CombinationRule(Base):
-    __tablename__ = "combination_rule"  # Nombre corregido
+    __tablename__ = "combination_rule"  
 
     combination_rule_id: Mapped[int] = Column(Integer, primary_key=True, index=True)
     name: Mapped[str] = Column(String, unique=True)
@@ -11,4 +11,4 @@ class CombinationRule(Base):
     default: Mapped[bool] = Column(Boolean)
 
     # Relación con la tabla intermedia
-    rules = relationship("CombinationRuleRScheduleDeviationRule", back_populates="combination_rule")
+    # rules = relationship("CombinationRuleRScheduleDeviationRule", back_populates="combination_rule")

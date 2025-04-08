@@ -6,12 +6,12 @@ from src.schemas.combination_rule import CombinationRuleCreate, CombinationRuleR
 
 router = APIRouter(prefix="/combination_rules", tags=["Combination Rules"])
 
-# Obtener todas las combinaciones
+# Obtiene todas las combinaciones
 @router.get("/", response_model=list[CombinationRuleResponse])
 def read_combination_rules(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     return get_combination_rules(db, skip, limit)
 
-# Obtener una combinación por ID
+# Obtiene una combinación por ID
 @router.get("/{combination_id}", response_model=CombinationRuleResponse)
 def read_combination(combination_id: int, db: Session = Depends(get_db)):
     combination = get_combination_by_id(db, combination_id)
@@ -19,7 +19,7 @@ def read_combination(combination_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Combination not found")
     return combination
 
-# Crear una nueva combinación
+# Crea una nueva combinación
 @router.post("/", response_model=CombinationRuleResponse)
 def create_new_combination(combination_data: CombinationRuleCreate, db: Session = Depends(get_db)):
     return create_combination(db, combination_data)

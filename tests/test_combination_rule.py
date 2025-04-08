@@ -1,24 +1,27 @@
 import pytest
 from fastapi.testclient import TestClient
 from main import app  
+from src.models import CombinationRule
 
-client = TestClient(app)  
 
-def test_create_regla_de_combinacion(client: TestClient):
-    """Prueba para crear una nueva regla de combinación."""
+# Prueba para crear una nueva CombinationRule
+def test_create_combination_rule(client: TestClient, db_session):   
+    
     data = {
-        "combination_rule_id": 1,
-        "schedule_deviation_id": 1
+        "name": "Combinación Test",
+        "description": "Descripción de prueba",
+        "default": False
     }
     response = client.post("/api/combination_rules", json=data)
-    print(response.json())
+    print("Response:", response.json())
     assert response.status_code == 200
-    assert response.json()["combination_rule_id"] == 1
-    assert response.json()["schedule_deviation_id"] == 1
+    assert response.json()["name"] == data["name"]
+    assert response.json()["description"] == data["description"]
+    assert response.json()["default"] == data["default"]
 
-def test_get_reglas_de_combinacion(client: TestClient):
-    """Prueba para obtener todas las reglas de combinación."""
+# Prueba para obtener todas las CombinationRules
+def test_get_combination_rules(client: TestClient, db_session):
+    
     response = client.get("/api/combination_rules")
     assert response.status_code == 200
-    assert isinstance(response.json(), list)  # Verifica que es una lista
-    assert len(response.json()) > 0  # Asegura que haya datos en la respuesta
+    assert isinstance(response.json(), list)

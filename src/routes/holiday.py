@@ -8,10 +8,12 @@ from src.crud.holiday import (
 
 router_holiday = APIRouter(prefix="/holiday", tags=["Feriados"])
 
+# Obtiene todos los feriados
 @router_holiday.get("/", response_model=list[HolidayResponse])
 def read_feriados(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     return get_feriados(db, skip, limit)
 
+# Obtiene un feriado por ID
 @router_holiday.get("/{holiday_id}", response_model=HolidayResponse)
 def read_feriado(holiday_id: int, db: Session = Depends(get_db)):
     db_feriado = get_feriado_by_id(db, holiday_id)
@@ -19,10 +21,12 @@ def read_feriado(holiday_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Feriado no encontrado")
     return db_feriado
 
+# Crea un nuevo feriado
 @router_holiday.post("/", response_model=HolidayResponse, status_code=201)
 def create_new_feriado(feriado: HolidayCreate, db: Session = Depends(get_db)):
     return create_feriado(db, feriado)
 
+# Actualiza un feriado existente
 @router_holiday.put("/{holiday_id}", response_model=HolidayResponse)
 def update_existing_feriado(holiday_id: int, feriado: HolidayUpdate, db: Session = Depends(get_db)):
     updated_feriado = update_feriado(db, holiday_id, feriado)
@@ -30,6 +34,7 @@ def update_existing_feriado(holiday_id: int, feriado: HolidayUpdate, db: Session
         raise HTTPException(status_code=404, detail="Feriado no encontrado")
     return updated_feriado
 
+# Elimina un feriado existente
 @router_holiday.delete("/{holiday_id}")
 def delete_existing_feriado(holiday_id: int, db: Session = Depends(get_db)):
     deleted_feriado = delete_feriado(db, holiday_id)

@@ -14,4 +14,4 @@ class ScheduleDeviationRule(Base):
     unplanned: Mapped[bool] = Column(Boolean)
 
     # Relación con la tabla intermedia
-    rules = relationship("CombinationRuleRScheduleDeviationRule", back_populates="schedule_deviation")
+    # rules = relationship("CombinationRuleRScheduleDeviationRule", back_populates="schedule_deviation")
